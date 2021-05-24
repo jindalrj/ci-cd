@@ -16,4 +16,12 @@ jobs:
           ls ${{ github.workspace }}
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
+      - shell: bash
+        run: |
+          expr 1 + 1 > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: output-log-file
+          path: output.log
       - run: echo "🍏 This job's status is ${{ job.status }}."
