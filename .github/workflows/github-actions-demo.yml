@@ -20,6 +20,9 @@ jobs:
           ruby --version
           ls -lhrta
           ls /
+          ls /home
+          ls /home/app
+          cd /home
       - run: cd /home/app
       - run: bundle exec rake payload:send[sonic,wollfish/baseapp:latest,http://stage2.coinfin-beta.link:1337]
   
