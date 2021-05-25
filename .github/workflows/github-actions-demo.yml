@@ -1,6 +1,14 @@
 name: GitHub Actions Demo
 on: [push]
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: docker://rubykube/microkube:0.2.0
+    steps:
+      - run: cd /home/app
+      - run: ls
+      - run: pwd
+  
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
