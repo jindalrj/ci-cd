@@ -16,6 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     container: docker://rubykube/microkube:0.2.0
     steps:
+      - run: |
+          pwd
+          ls
+          ruby --version
+          ls -lhrta
       - run: cd /home/app
       - run: bundle exec rake payload:send[sonic,wollfish/baseapp:latest,http://stage2.coinfin-beta.link:1337]
   
