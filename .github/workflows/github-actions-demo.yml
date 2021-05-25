@@ -1,6 +1,17 @@
 name: GitHub Actions Demo
 on: [push]
 jobs:
+  testbox:
+    runs-on: ubuntu-latest
+    container:
+      image: azul/zulu-openjdk-alpine:8-jre
+    steps:  
+    - uses: actions/checkout@v2
+    - name: What OS is running
+      run: uname -a
+    - name: What java version do we have
+      run: java -version
+
   test:
     runs-on: ubuntu-latest
     container: docker://rubykube/microkube:0.2.0
