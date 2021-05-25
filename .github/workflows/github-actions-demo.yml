@@ -23,3 +23,9 @@ jobs:
         with:
           push: true
           tags: rockstarjindal/cicd:${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}
+      - name: Slack notification
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        uses: Ilshidur/action-slack@2.0.2
+        with:
+          args: "A new commit has been pushed. ${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}"
