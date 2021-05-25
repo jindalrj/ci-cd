@@ -18,14 +18,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v2
+      - name: Run box version	    
+        uses: docker://rubykube/microkube:0.2.0
         with:
-          push: true
-          tags: rockstarjindal/cicd:${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}
-      - name: Slack notification
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        uses: Ilshidur/action-slack@2.0.2
-        with:
-          args: "A new commit has been pushed. ${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}"
+          command: |
+            cd /home/app
+            ls
+            pwd
