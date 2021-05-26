@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker://rubykube/microkube:0.2.0
+      options: --user root
     steps:
       - run: |
           id
