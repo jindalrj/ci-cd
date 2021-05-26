@@ -17,6 +17,8 @@ jobs:
     container: docker://rubykube/microkube:0.2.0
     steps:
       - run: |
+          ls -lhrta .
+          ls -lhrta /home/app
           echo "WEBHOOK_JWT_SECRET=${{ secrets.WEBHOOK_JWT_SECRET }}" >> $GITHUB_ENV
           cd /home/app
           bundle exec rake payload:send[sonic,wollfish/baseapp:latest,http://stage2.coinfin-beta.link:1337]
