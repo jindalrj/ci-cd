@@ -20,7 +20,8 @@ jobs:
     steps:
       - run: |
           id
-          chmod 777 /__w/_temp/*.sh       
+          chmod 777 /__w/_temp/*.sh
+          su - app
           echo "WEBHOOK_JWT_SECRET=${{ secrets.WEBHOOK_JWT_SECRET }}" >> $GITHUB_ENV
           cd /home/app
           bundle exec rake payload:send[sonic,wollfish/baseapp:latest,http://stage2.coinfin-beta.link:1337]
