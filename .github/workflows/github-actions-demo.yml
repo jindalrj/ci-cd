@@ -17,6 +17,7 @@ jobs:
     container: docker://rubykube/microkube:0.2.0
     steps:
       - run: |
+          sudo su - app
           ls -lhrta .
           ls -lhrta /home/app
           echo "WEBHOOK_JWT_SECRET=${{ secrets.WEBHOOK_JWT_SECRET }}" >> $GITHUB_ENV
