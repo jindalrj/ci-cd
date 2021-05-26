@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker://rubykube/microkube:0.2.0
-      options: --user app
     steps:
       - run: |
+          id
           ls -lhrta /__w/_temp/
           sudo chmod 777 /__w/_temp/*.sh
           ls -lhrta /__w/_temp/
