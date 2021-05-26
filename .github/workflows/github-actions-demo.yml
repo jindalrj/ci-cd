@@ -26,6 +26,8 @@ jobs:
   
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    outputs:
+      IMAGE_TAG: ${{ steps.Output-image-tag-step.outputs.IMAGE_TAG }}
     steps:
       # Useful for friendly github variables
       - name: Inject slug/short variables
@@ -41,10 +43,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Run box version	    
-        uses: docker://rubykube/microkube:0.2.0
-        with:
-          command: |
-            cd /home/app
-            ls
-            pwd
+      - id: Output-image-tag-step
+        run: echo "::set-output name=IMAGE_TAG::${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}"
+      - run: echo ${{ steps.Output-image-tag-step.outputs.IMAGE_TAG }}
+  
+  job2:
+    runs-on: ubuntu-latest
+    needs: Explore-GitHub-Actions
+    steps:
+      - run: echo ${{ needs.Explore-GitHub-Actions.outputs.IMAGE_TAG }}
