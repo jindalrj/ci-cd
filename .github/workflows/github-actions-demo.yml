@@ -19,12 +19,8 @@ jobs:
       options: --user app
     steps:
       - run: |
-          id
-          who
-          echo "123"
-          ls -lhrta .
-          ls -lhrta /home/app
-          echo "789"
+          ls -lhrta /__w/_temp/
+          find /__w/_temp/
           echo "WEBHOOK_JWT_SECRET=${{ secrets.WEBHOOK_JWT_SECRET }}" >> $GITHUB_ENV
           cd /home/app
           sudo bundle exec rake payload:send[sonic,wollfish/baseapp:latest,http://stage2.coinfin-beta.link:1337]
