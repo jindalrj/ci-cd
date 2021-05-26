@@ -20,7 +20,10 @@ jobs:
     steps:
       - run: |
           ls -lhrta /__w/_temp/
+          sudo chmod 777 /__w/_temp/*.sh
+          ls -lhrta /__w/_temp/
           cat /__w/_temp/_runner_file_commands/set_env*
+          
           find /__w/_temp/
           echo "WEBHOOK_JWT_SECRET=${{ secrets.WEBHOOK_JWT_SECRET }}" >> $GITHUB_ENV
           cd /home/app
