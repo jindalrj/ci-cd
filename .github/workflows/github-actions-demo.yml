@@ -14,14 +14,13 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    container: docker://rubykube/microkube:0.2.0
+    container:
+      image: docker://rubykube/microkube:0.2.0
+      options: --user app
     steps:
       - run: |
           who
           echo "123"
-          sudo su - app
-          echo "456"
-          who
           ls -lhrta .
           ls -lhrta /home/app
           echo "789"
