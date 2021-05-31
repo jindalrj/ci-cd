@@ -11,18 +11,6 @@ jobs:
       run: uname -a
     - name: What java version do we have
       run: java -version
-
-  test:
-    runs-on: ubuntu-latest
-    container:
-      image: docker://rubykube/microkube:0.2.0
-      options: --user root
-    env:
-      WEBHOOK_JWT_SECRET: ${{ secrets.WEBHOOK_JWT_SECRET }}
-    steps:
-      - run: |
-          cd /home/app
-          bundle exec rake payload:send[sonic,wollfish/baseapp:latest,http://stage2.coinfin-beta.link:1337]
   
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -46,6 +34,9 @@ jobs:
       - id: Output-image-tag-step
         run: echo "::set-output name=IMAGE_TAG::${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}"
       - run: echo ${{ steps.Output-image-tag-step.outputs.IMAGE_TAG }}
+      - if: contains(env.GITHUB_REF_SLUG, 'main')
+        run: echo '123'
+      
   
   job2:
     runs-on: ubuntu-latest
