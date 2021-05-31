@@ -54,7 +54,7 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          command: helm plugin install https://github.com/databus23/helm-diff && \
+          command: helm plugin install https://github.com/databus23/helm-diff &&
                    helm diff upgrade opendax openware/opendax -n wollfish-cat2 --reuse-values --set sonic.image.tag=${{ needs.Explore-GitHub-Actions.outputs.IMAGE_TAG }}
       - name: Print Response
         run: echo "Response was ${{ steps.helm.outputs.response }}"
