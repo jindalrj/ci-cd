@@ -43,4 +43,15 @@ jobs:
     needs: Explore-GitHub-Actions
     if: contains(needs.Explore-GitHub-Actions.outputs.IMAGE_TAG, 'main')
     steps:
-      - run: echo ${{ needs.Explore-GitHub-Actions.outputs.IMAGE_TAG }}
+      - name: AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: helm deploy
+        uses: koslib/helm-eks-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          command: helm get values opendax -n wollfish_cat2 -o json
