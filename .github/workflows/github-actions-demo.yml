@@ -34,7 +34,7 @@ jobs:
       - id: Output-image-tag-step
         run: echo "::set-output name=IMAGE_TAG::${{ env.GITHUB_REF_SLUG }}-${{ env.GITHUB_SHA_SHORT }}"
       - run: echo ${{ steps.Output-image-tag-step.outputs.IMAGE_TAG }}
-      - if: contains(env.GITHUB_REF_SLUG, 'main')
+      - if: contains(env.GITHUB_REF_SLUG, 'main2')
         run: echo '123'
       
   
