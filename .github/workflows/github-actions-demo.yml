@@ -40,9 +40,13 @@ jobs:
   
   job2:
     runs-on: ubuntu-latest
-    needs: Explore-GitHub-Actions
-    if: contains(needs.Explore-GitHub-Actions.outputs.IMAGE_TAG, 'main')
     steps:
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "new-json-file.json"
+          json: '{"name":"jsdaniell", "password":"mypass"}'
       - name: AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
