@@ -54,4 +54,4 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          command: helm get values opendax -n wollfish_cat2 -o json
+          command: helm get values opendax -n wollfish-cat2 -o json
